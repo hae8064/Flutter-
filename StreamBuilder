@@ -1,0 +1,21 @@
+StreamBuilder란?
+외부 데이터를 가져오는데 delay가 생기는데 이러한 문제를 비동기 문제라고 할 수 있다. 이 문제를 해결하기 위해서 StreamBuilder를 사용한다.
+추가적으로 데이터를 여러번 가져올 때 주로 사용한다.
+
+예제
+child: StreamBuilder(
+          stream: streamController.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(
+                snapshot.data,
+                style: TextStyle(fontSize: 35),
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        )),
+       
+StreamBuilder는 controller를 사용해 데이터의 유무를 판단한다. 
+첫 실행시 streamController의 데이터는 null이 된다. 따라서, builder의 snapshot.hasData가 false이고 CircularProgressIndicator를 반환한다.
