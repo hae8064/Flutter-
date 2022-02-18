@@ -1,0 +1,9 @@
+예제)
+const db = firebase.firestore();
+  db.collection('product').get().then((결과)=>{
+    결과.forEach((doc)=>{
+      console.log(doc.data())
+    })
+  })
+  
+이 예제를 사용하면 -> 컬렉션 안에 -> product안에 -> 필드값을 가져올 수 있음 (이때, 필드값은 json형식이다.)
