@@ -1,0 +1,28 @@
+GetX 3가지 원칙
+1. 성능: 성능과 리소스 소비 최소화에 집중
+2. 생산성: 사용하지 않는 리소스는 메모리에서 자동으로 재거해 줌
+3. 조직화: 화면, 프레젠테이션 로직, 비즈니스 로직, 종속성 주입, 네비게이션을 완전히 분리 가능하다.
+
+Ex)
+1. Get.to(NextPage());        => 새로운 화면으로 이동한다. 이 예제는 NextPage()로 이동함.
+
+2. Get.toNamed('/next');      => /next라는 이름을 가진 페이지로 이동한다. 
+-> 하지만 위 예제는 에러가 발생한다. 아래 코드와 같이 GetMaterialApp의 getPages를 추가하고, /next와 NextPage()를 연결해야 함.
+GetMaterialApp(
+  title: 'Getx example',
+  home: HomePage(),
+  getPages: [
+    GetPage(name: '/next', page: () => NextPage()),
+  ],
+)
+
+3. Get.back();                => 이전 화면으로 돌아간다.
+
+4. Get.off(NextPage());                 => 다음 화면으로 이동하면서 이전 화면을 아예 없애버린다.
+
+
+-Reactive방식
+1. Rx선언
+1)value.obs
+2)Rx<Type>(value)
+3)RxType(value)
