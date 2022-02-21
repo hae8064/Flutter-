@@ -1,0 +1,39 @@
+1. 패키지 추가
+-pubspec.yaml파일에 Realtime Database패키지를 추가한다. ( firebase_database)
+
+
+2. 데이터 추가
+void createData(){
+  final userReference = FirebaseDatabase().referece().child("User");
+  userReference.child("userKey1").set({
+    "userName": "이봉희",
+    "나이": 25,
+   });
+ }
+ 
+ Firebvase Database안에는 User -> userKey1 -> userName과 나이를 저장 해 놓는다.
+ 
+ 
+ 3. 데이터 읽기
+ void readData(){
+  final userReference = FirebaseDatabase().reference().child("User").child("userKey1")
+  userRefernce.once().then((DataSnapshot dataSnapshot) {
+    print(dataSnapshot.value);          //결과로 {userName: 이봉희, 나이: 25}
+   });
+  }
+  
+  
+ 4. 데이터 업데이트
+ void updateData() {
+  final userReference = FirebaseDatabase().reference().child("User");
+  userRefernce.child("userKey1").update({
+    "나이": 23,         //나이 속성을 23으로 업데이트
+   });
+ }
+ 
+ 
+ 5. 데이터 삭제하기
+ void deleteData() {
+  final userReference = FirebaseDatabase().reference().child("User");
+  userReference.child("userKey1").remove();
+ }
